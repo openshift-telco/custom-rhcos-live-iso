@@ -1,0 +1,60 @@
+{
+    "ignition": {
+        "config": {},
+        "version": "3.1.0"
+    },
+    "networkd": {},
+    "passwd": {
+        "users": [
+            {
+                "name": "core",
+                "sshAuthorizedKeys": [
+                    "$SSH_KEY"
+                ],
+                "passwordHash": "$1$f9F1p5ap$VIFGF2QHttm6xPeGMh/YA/"
+            }
+        ]
+    },
+    "storage": {
+        "files": [
+            {
+                "contents": {
+                    "source": "data:,custom-live-iso",
+                    "verification": {}
+                },
+                "filesystem": "root",
+                "mode": 420,
+                "overwrite": true,
+                "path": "/etc/hostname"
+            },
+            {
+                "contents": {
+                    "source": "data:text/plain;charset=utf-8;base64,IGNITION_FILE",
+                    "verification": {}
+                },
+                "filesystem": "root",
+                "mode": 420,
+                "overwrite": true,
+                "path": "/root/config.ign"
+            },
+            {
+                "contents": {
+                    "source": "data:text/plain;charset=utf-8;base64,ISO_SCRIPT",
+                    "verification": {}
+                },
+                "filesystem": "root",
+                "mode": 448,
+                "path": "/usr/local/bin/first.sh"
+            }
+        ]
+    },
+    "systemd": {
+        "units": [
+            {
+                "contents": "[Service]\nType=oneshot\nExecStart=/usr/local/bin/first.sh\n[Install]\nWantedBy=multi-user.target\n",
+                "enabled": true,
+                "name": "first-boot.service"
+            }
+        ]
+    }
+}
