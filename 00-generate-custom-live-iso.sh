@@ -18,6 +18,7 @@ if [ ! -f rhcos-live.x86_64.iso ]; then
     cp ${RHCOS_LIVE_PATH} ./rhcos-live.x86_64.iso
   else
     echo "ERROR: Can not find base RHCOS Live ISO image on local directory. Set RHCOS_LIVE_PATH with correct location."
+    echo "Try: curl -OL https://mirror.openshift.com/pub/openshift-v4/dependencies/rhcos/latest/latest/rhcos-live.x86_64.iso "
     exit 1
   fi 
 fi
@@ -38,7 +39,7 @@ generate_iso(){
   rm -f ./${CLUSTER_NAME}-$role.iso
   bash create-ign-for-live-iso.sh
   $COREOSINSTALLER iso ignition embed -fi iso.ign -o /data/${CLUSTER_NAME}-$role.iso rhcos-live.x86_64.iso
-  cp -f ./${CLUSTER_NAME}-$role.iso /opt/nginx/html/${CLUSTER_NAME}-$role.iso
+  #cp -f ./${CLUSTER_NAME}-$role.iso /opt/nginx/html/${CLUSTER_NAME}-$role.iso
 }
 
 if [[ $# -eq 0 ]] ; then
