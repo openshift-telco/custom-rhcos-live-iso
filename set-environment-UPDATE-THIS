@@ -4,24 +4,11 @@
 # CLUSTER SPECIFIC SETTINGS
 export CLUSTER_NAME=mgmt
 export BASE_DOMAIN=ran.shift.zone
-export NTP_SERVER=2.rhel.pool.ntp.org
 export SSH_PUB_KEY_PATH=~/.ssh/id_rsa.pub
 
-# PULL SECRETS
-export PULL_SECRET=~/private/pull-secret.json
-export AIRGAP_SECRET=~/private/pull-secret-local.json
-# Combined pull secret file
-export PULL_SECRET2=~/private/pull-secret2.json
-
-# LOCAL REGISTRY 
-export AIRGAP_REGISTRY=bastion.${CLUSTER_NAME}.${BASE_DOMAIN}:5000
-
-# OCP RELEASES
-export OCP_RELEASE_MAIN=4.6
-export OCP_RELEASE=4.6.9
-
 # LIST OF RWN MCPs
-MCP_RWN=( ran-du ran-cu ran-mgmt )
+#MCP_RWN=( ran-du ran-cu ran-mgmt rwn )
+MCP_RWN=( worker )
 
 # PATH TO LOCAL OCP & RHCOS IMAGES
 export OCP_RHCOS_DIR=~/images
