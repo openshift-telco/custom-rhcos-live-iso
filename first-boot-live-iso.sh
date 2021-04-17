@@ -8,6 +8,8 @@ firstboot_args='console=tty0 rd.neednet=1'
 
 if [ -b /dev/vda ] && [ "$(lsblk /dev/vda)" != "" ] ; then
   install_device='/dev/vda'
+elif [ -b /dev/sda ] && [ "$(lsblk /dev/sda)" != "" ] ; then
+  install_device='/dev/sda'
 else
   # when prefered block device not detected
   # deploy to the first block device detected
