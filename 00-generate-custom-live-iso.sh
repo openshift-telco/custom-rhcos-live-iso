@@ -59,7 +59,7 @@ if [ $ADDING_NODES == "add-nodes" ]; then
     else
       # Pulling rendered MCP
       echo "Using rendered MCP as source ignition file"
-      curl -o preconfig.ign -H "Accept: application/vnd.coreos.ignition+json; version=3.1.0" -Lk https://api-int.${CLUSTER_NAME}.${BASE_DOMAIN}:22623/config/$MCP
+      curl -o preconfig.ign -H "Accept: application/vnd.coreos.ignition+json; version=3.1.0" -Lk https://api-int.${CLUSTER_NAME}.${BASE_DOMAIN}:22623/config/$MCP_NAME
       if [ $CORE_USER_CONSOLE == "yes" ]; then
         # Inject console password (unix1234)
         cat preconfig.ign | jq '.passwd.users[0] += {"passwordHash": "$1$f9F1p5ap$VIFGF2QHttm6xPeGMh/YA/"}' > config.ign
