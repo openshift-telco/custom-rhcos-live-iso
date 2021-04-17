@@ -31,7 +31,7 @@ else
 fi
 
 # Load SSH as valid JSON file and merge it
-SSH_KEY=$( echo "{'passwd':{'users':[{'name':'core','sshAuthorizedKeys':['$(cat ~/.ssh/id_rsa.pub)']}]}}" | sed 's/'\''/"/g' )
+SSH_KEY=$( echo "{'passwd':{'users':[{'name':'core','sshAuthorizedKeys':['$(cat $SSH_PUB_KEY_PATH)']}]}}" | sed 's/'\''/"/g' )
 cat iso.ign.template | jq -s ".[0] * $SSH_KEY" > $IGN_ISO_OUTPUT-ssh
 
 # Embed node ignition file (this procedure work around the size of rendered ign files)
