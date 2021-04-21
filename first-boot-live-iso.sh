@@ -14,7 +14,7 @@ else
   # when prefered block device not detected
   # deploy to the first block device detected
   # ignores any sr0 or cdrom0 devie
-  first_block_dev=$(lsblk -lpdn -o NAME | egrep -v "sr0|cdrom0" | sed -n '1 p')
+  first_block_dev=$(lsblk -lpdn -o NAME | egrep -v "sr0|loop|cdrom0" | sed -n '1 p')
   if [[ $first_block_dev ]]; then
     install_device=$first_block_dev
   else
